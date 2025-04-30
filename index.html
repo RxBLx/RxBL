@@ -1,82 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta content='width=device-width,initial-scale=1.0' name='viewport'/>
-  <title>RxBl Blog</title>
-  <!-- Link ke CSS eksternal -->
-  <link rel="stylesheet" href="styles.css"/>
-  <!-- Google Fonts -->
-  <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter&display=swap' rel='stylesheet'/>
-  <!-- Kode Iklan Adsterra Header -->
-  <script async='async' data-cfasync='false' src='//pl26507792.profitableratecpm.com/1eefa2f479e4c86f901cbbca96b5e86f/invoke.js'></script>
-  <div id='container-1eefa2f479e4c86f901cbbca96b5e86f'></div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RxBlx - Blog Scripting Roblox</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
-
 <body>
-  <div class='container'>
-    <header class='site-header'>
-      <h1>RxBl Blog</h1>
-      <button class='hamburger'>☰</button>
-      <div class='search-box'>
-        <input placeholder='Cari artikel...' type='text'/>
-        <button>Cari</button>
-      </div>
-    </header>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <h1>RxBlx</h1>
+    </div>
+    <nav>
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">&#9776;</label>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#donate">Donate</a></li>
+      </ul>
+    </nav>
+    <form class="search-box">
+      <input type="text" placeholder="Cari artikel...">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </header>
 
-    <main class='post-grid'>
-      <!-- Contoh Card Artikel -->
-      <article class='post-card fade-in'>
-        <img src='thumbnail.jpg' alt='Thumbnail'/>
-        <h2><a href='#'>Judul Artikel</a></h2>
-      </article>
-      <article class='post-card fade-in'>
-        <img src='thumbnail.jpg' alt='Thumbnail'/>
-        <h2><a href='#'>Judul Artikel</a></h2>
-      </article>
-      <div class='pagination'>
-        <a href='#'>1</a>
-        <a href='#'>2</a>
-        <a href='#'>3</a>
-        <a href='#'>Selanjutnya</a>
-      </div>
-    </main>
-
-    <footer class='site-footer'>
-      <p>Tentang Kami | Kebijakan Privasi</p>
-      <p>&copy; RxBl Blog - 2025</p>
-    </footer>
+  <!-- Iklan Header -->
+  <div class="ad-banner">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- Section untuk Postingan -->
-  <section id='postpage' style='display:none;'>
-    <article class='post-full'>
-      <header class='post-header'>
-        <h1>Judul Artikel</h1>
-        <img src='thumbnail.jpg' alt='Thumbnail Artikel'/>
-        <div class='meta'>oleh Admin &middot; 20 April 2025</div>
-      </header>
-      <section class='post-body'>
-        <p>Isi artikel...</p>
-        <div class='ad-box'>
-          <!-- Kode Iklan Adsterra di dalam postingan -->
-          <script async='async' data-cfasync='false' src='//pl26507792.profitableratecpm.com/1eefa2f479e4c86f901cbbca96b5e86f/invoke.js'></script>
-          <div id='container-1eefa2f479e4c86f901cbbca96b5e86f'></div>
-        </div>
-      </section>
-      <footer class='post-navigation'>
-        <a href='/'>← Kembali ke Beranda</a>
-      </footer>
-    </article>
-  </section>
+  <!-- Main Content -->
+  <main>
+    <section id="posts">
+      <div class="post-card">
+        <img src="https://via.placeholder.com/300x200" alt="Thumbnail">
+        <h2>Judul Artikel 1</h2>
+      </div>
+      <div class="post-card">
+        <img src="https://via.placeholder.com/300x200" alt="Thumbnail">
+        <h2>Judul Artikel 2</h2>
+      </div>
+      <div class="post-card">
+        <img src="https://via.placeholder.com/300x200" alt="Thumbnail">
+        <h2>Judul Artikel 3</h2>
+      </div>
+    </section>
 
-  <!-- Sidebar Ads -->
-  <div class='ad-box'>
-    <!-- Kode Iklan Adsterra Sidebar -->
-    <script async='async' data-cfasync='false' src='//pl26507792.profitableratecpm.com/1eefa2f479e4c86f901cbbca96b5e86f/invoke.js'></script>
-    <div id='container-1eefa2f479e4c86f901cbbca96b5e86f'></div>
-  </div>
+    <!-- Iklan Mid-Content -->
+    <div class="ad-mid">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:300px;height:250px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </main>
 
-  <!-- Link ke JavaScript eksternal -->
-  <script src="scripts.js"></script>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>About</h3>
+        <p>Tentang blog RxBlx.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Privacy</h3>
+        <p>Kebijakan privasi.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Donate</h3>
+        <p>Donasi untuk dukungan blog.</p>
+      </div>
+    </div>
+    <div class="ad-footer">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </footer>
 </body>
 </html>
