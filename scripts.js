@@ -1,70 +1,137 @@
-// Hamburger Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const menuOverlay = document.querySelector('.menu-overlay');
+// Partikel Bergerak
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.createElement('canvas');
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.zIndex = '-1';
+  canvas.style.pointerEvents = 'none';
+  document.body.appendChild(canvas);
 
-if (hamburger && menuOverlay) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-  });
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  const particleCount = 50;
 
-  // Close menu when clicking outside
-  window.addEventListener('click', function(e) {
-    if (!document.querySelector('.menu-overlay').contains(e.target) &&
-        !document.querySelector('.hamburger').contains(e.target)) {
-      hamburger.classList.remove('active');
-      menuOverlay.classList.remove('active');
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3 + 1;
+      this.speedX = Math.random() * 2 - 1;
+      this.speedY = Math.random() * 2 - 1;
     }
-  });
-}
 
-// Fade In Animation on Load
-window.addEventListener('load', () => {
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+
+    draw() {
+      ctx.fillStyle = 'rgba(138, 43, 226, 0.5)';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    initParticles();
+  });
+
+  resizeCanvas();
+  initParticles();
+  animate();
+});
+
+// Fade-In Saat Scroll
+document.addEventListener('DOMContentLoaded', () => {
   const elements = document.querySelectorAll('.fade-in');
-  elements.forEach(el => {
-    el.style.opacity = '1';
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, {
+    threshold: 0.1,
+  });
+
+  elements.forEach(element => {
+    observer.observe(element);
   });
 });
 
-// Copy Code Function
-function copyCode(button) {
-  const pre = button.closest('.code-box').querySelector('pre');
-  const range = document.createRange();
-  range.selectNodeContents(pre);
-  const sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
+// Toggle Hamburger Menu
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburgerMenu = document.querySelector('.hamburger-menu');
+  const hamburgerBox = document.querySelector('.hamburger-box');
 
-  try {
-    document.execCommand('copy');
-    button.textContent = 'Tersalin!';
-    setTimeout(() => {
-      button.textContent = 'Salin Kode';
-    }, 2000);
-  } catch (err) {
-    alert('Gagal menyalin teks');
-  }
+  hamburgerMenu.addEventListener('click', () => {
+    hamburgerBox.style.display = hamburgerBox.style.display === 'block' ? 'none' : 'block';
+  });
 
-  sel.removeAllRanges();
-}
-
-// Modal for About / Privacy
-function openModal(title, content) {
-  const modal = document.createElement('div');
-  modal.className = 'modal-overlay';
-  modal.innerHTML = `
-    <div class="modal">
-      <span class="close-btn" onclick="this.parentElement.parentElement.remove()">&times;</span>
-      <h3>${title}</h3>
-      <p>${content}</p>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  // Close on click outside
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.remove();
+  // Close Hamburger Menu when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!hamburgerBox.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+      hamburgerBox.style.display = 'none';
     }
   });
-}
+});
+
+// Modal Pop-up
+document.addEventListener('DOMContentLoaded', () => {
+  const popupLinks = document.querySelectorAll('.popup-link');
+  const modals = document.querySelectorAll('.modal');
+  const closeButtons = document.querySelectorAll('.close');
+
+  popupLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetModal = document.getElementById(link.dataset.popup + '-modal');
+      targetModal.style.display = 'flex';
+    });
+  });
+
+  closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      modals.forEach(modal => {
+        modal.style.display = 'none';
+      });
+    });
+  });
+
+  // Close Modal when clicking outside
+  modals.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+});
