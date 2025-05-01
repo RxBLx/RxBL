@@ -135,3 +135,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Pop-Up Subscribe
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.createElement('div');
+  popup.classList.add('subscribe-popup');
+  popup.innerHTML = `
+    <span class="close-popup">&times;</span>
+    <h2>Subscribe to Our Channel!</h2>
+    <p>Don't miss out on our latest videos. Click below to subscribe:</p>
+    <a href="https://www.youtube.com/your-channel" target="_blank">Subscribe Now</a>
+  `;
+
+  document.body.appendChild(popup);
+
+  let popupTimeout;
+
+  function showPopup() {
+    popup.classList.add('active');
+  }
+
+  function hidePopup() {
+    popup.classList.remove('active');
+  }
+
+  // Show popup every 10 minutes
+  function schedulePopup() {
+    popupTimeout = setTimeout(() => {
+      showPopup();
+      schedulePopup(); // Schedule the next popup
+    }, 10 * 60 * 1000); // 10 minutes in milliseconds
+  }
+
+  // Close popup when clicking the close button
+  popup.querySelector('.close-popup').addEventListener('click', () => {
+    hidePopup();
+  });
+
+  // Start the popup timer
+  schedulePopup();
+
+  // Optionally, hide the popup if clicked outside
+  popup.addEventListener('click', (event) => {
+    if (event.target === popup) {
+      hidePopup();
+    }
+  });
+});
