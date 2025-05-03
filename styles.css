@@ -239,3 +239,104 @@ footer {
         max-width: 100%;
     }
 }
+
+/* styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+/* Base */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0f0f0f;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.post-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Box Judul */
+.box-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.box-title h1 {
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    color: #c218e6;
+    text-shadow: 0 0 10px #c218e6;
+}
+
+/* Box Thumbnail */
+.box-thumbnail img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #440044;
+}
+
+/* Box Deskripsi */
+.box-description {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Box Syntax Highlight */
+.box-syntax {
+    margin-top: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #440044;
+}
+
+.syntax-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    gap: 10px;
+}
+
+.btn-raw, .btn-copy {
+    background-color: #c218e6;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-raw:hover, .btn-copy:hover {
+    background-color: #ff007f;
+}
+
+.box-syntax pre {
+    margin: 0;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.box-syntax code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .box-title h1 {
+        font-size: 30px;
+    }
+
+    .box-description {
+        font-size: 14px;
+    }
+}
