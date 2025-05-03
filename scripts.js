@@ -1,57 +1,41 @@
-// scripts.js
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Prism.js for Syntax Highlighting
-    if (typeof Prism !== 'undefined') {
-        Prism.highlightAll();
-    }
-
-    // Tombol Copy
-    const copyButtons = document.querySelectorAll('.btn-copy');
-    copyButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            const codeBlock = button.closest('.box-syntax').querySelector('code');
-            const textToCopy = codeBlock.textContent;
-
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert('Code copied to clipboard!');
-            }).catch((err) => {
-                console.error('Failed to copy text: ', err);
-            });
-        });
+// Tombol Copy
+document.querySelectorAll('.btn-copy').forEach(button => {
+  button.addEventListener('click', () => {
+    const codeBlock = button.closest('.post-syntax-highlight').querySelector('code');
+    navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+      alert('Code copied to clipboard!');
     });
+  });
+});
 
-    // Tombol Raw
-    const rawButtons = document.querySelectorAll('.btn-raw');
-    rawButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            const codeBlock = button.closest('.box-syntax').querySelector('code');
-            const rawWindow = window.open('', '_blank');
-            rawWindow.document.write('<pre>' + codeBlock.textContent + '</pre>');
-            rawWindow.document.close();
-        });
-    });
+// Tombol Raw
+document.querySelectorAll('.btn-raw').forEach(button => {
+  button.addEventListener('click', () => {
+    const codeBlock = button.closest('.post-syntax-highlight').querySelector('code');
+    window.open(`data:text/plain;charset=utf-8,${encodeURIComponent(codeBlock.textContent)}`, '_blank');
+  });
+});
 
-    // Hamburger Menu Toggle
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
+// Pop-up Subscribe
+let popupShown = false;
+setInterval(() => {
+  if (!popupShown) {
+    document.querySelector('.popup').classList.add('active');
+    popupShown = true;
+  }
+}, 600000); // 10 menit
 
-    hamburger.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-    });
+document.querySelector('.popup .close').addEventListener('click', () => {
+  document.querySelector('.popup').classList.remove('active');
+  popupShown = false;
+});
 
-    // Fade-In Animation
-    const fadeInElements = document.querySelectorAll('.fade-in');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-
-    fadeInElements.forEach((el) => observer.observe(el));
+// Thumbnail Otomatis
+document.addEventListener("DOMContentLoaded", function () {
+  const postBody = document.querySelector(".post-description");
+  const firstImage = postBody.querySelector("img");
+  if (firstImage) {
+    const thumbnail = document.querySelector(".post-thumbnail img");
+    thumbnail.src = firstImage.src;
+  }
 });
