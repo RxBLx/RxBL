@@ -1,4 +1,4 @@
-/* style.css */
+/* styles.css */
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
@@ -130,7 +130,7 @@ header {
     background-color: #1a1a1a;
     border-radius: 10px;
     padding: 20px;
-    flex: 1 1 280px;
+    flex: 1 1 calc(33% - 20px);
     min-width: 280px;
     box-shadow: 0 0 10px #440044;
     transition: transform 0.3s ease;
@@ -200,8 +200,18 @@ footer {
         align-items: center;
     }
 
+    .box {
+        flex: 1 1 100%;
+        min-width: auto;
+        width: 100%;
+    }
+
     .follow-us a {
         margin: 0 10px;
         font-size: 16px;
+    }
+
+    .ad-space img {
+        max-width: 100%;
     }
 }
