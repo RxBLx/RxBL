@@ -1,150 +1,175 @@
-/* General Styling */
+/* Base Styles */
 body {
-  background: linear-gradient(135deg, #000, #800080);
-  color: white;
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000;
+  color: white;
+  line-height: 1.6;
 }
 
 /* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background: #111;
+.header {
+  text-align: center;
+  padding: 20px 10px;
   position: relative;
+  border-bottom: 2px solid purple;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase;
-  animation: rotate 5s infinite linear;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
-.hamburger-menu {
-  position: relative;
-}
-
-.hamburger-icon {
+.hamburger {
+  position: absolute;
+  left: 15px;
+  top: 20px;
   font-size: 24px;
   cursor: pointer;
+  color: purple;
 }
 
-.menu-items {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: #222;
-  padding: 10px;
-  border-radius: 5px;
+.site-title {
+  font-size: 24px;
+  color: purple;
+  margin: 0;
 }
 
-.menu-items li {
-  list-style: none;
-  margin: 5px 0;
+.search-box {
+  margin-top: 10px;
 }
 
-.menu-items a {
+.search-box input {
+  width: 80%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-box button {
+  padding: 8px 12px;
+  background-color: purple;
+  border: none;
   color: white;
-  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-.hamburger-icon:hover + .menu-items,
-.menu-items:hover {
+/* Advertisement Box */
+.top-ad,
+.mid-ad,
+.footer-ad {
+  text-align: center;
+  margin: 20px auto;
+  position: relative;
+}
+
+.top-ad iframe,
+.mid-ad iframe,
+.footer-ad iframe {
+  width: 728px;
+  height: 90px;
   display: block;
+  margin: auto;
 }
 
-/* Main Content */
-.box {
-  background: rgba(255, 255, 255, 0.1);
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Responsiveness */
 @media (max-width: 768px) {
-  .box {
-    margin: 10px;
-    padding: 15px;
-  }
-
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hamburger-menu {
+  .top-ad iframe,
+  .mid-ad iframe,
+  .footer-ad iframe {
     width: 100%;
+    min-height: 60px;
   }
+}
 
-  .menu-items {
-    width: 100%;
-  }
+.top-ad::after,
+.mid-ad::after,
+.footer-ad::after {
+  content: "Advertisement";
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 12px;
+  color: purple;
+  z-index: 10;
+}
+
+/* Post Boxes */
+.post {
+  margin: 20px auto;
+  max-width: 700px;
+  padding: 15px;
+  border: 2px solid purple;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.post:hover {
+  border-color: #a64ca6;
+  box-shadow: 0 0 10px rgba(170, 76, 170, 0.5);
+}
+
+.post-thumbnail img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.post-title h2 {
+  font-size: 20px;
+  color: #fff;
+  margin: 0 0 10px;
+}
+
+.post-date {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+/* Syntax Highlighting */
+.syntax-highlight {
+  background-color: #1e1e1e;
+  border: 2px solid purple;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.syntax-highlight:hover {
+  border-color: #a64ca6;
+}
+
+.code-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.code-header button {
+  background-color: purple;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+pre {
+  margin: 0;
+  font-size: 14px;
 }
 
 /* Footer */
-footer {
+.footer {
   text-align: center;
-  padding: 10px;
-  background: #111;
-}
-
-/* Pop-up */
-.popup {
-  position: fixed;
-  top: -100px;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  text-align: center;
-  padding: 10px;
-  transition: top 0.5s ease-in-out;
-}
-
-.popup.active {
-  top: 0;
-}
-
-.popup .close {
-  cursor: pointer;
-  float: right;
-}
-
-/* Ads Responsiveness */
-.ads-header-content,
-.ads-footer-content {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-}
-
-@media (max-width: 768px) {
-  .ads-header-content img,
-  .ads-footer-content img {
-    max-width: 100%;
-    height: auto;
-  }
+  padding: 20px;
+  font-size: 14px;
+  color: gray;
+  border-top: 2px solid purple;
+  margin-top: 40px;
 }
