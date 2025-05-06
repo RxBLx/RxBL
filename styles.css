@@ -1,4 +1,7 @@
-    .blurred {
+
+      body
+     }
+     .blurred {
       filter: blur(6px) brightness(0.7);
       pointer-events: none;
       user-select: none;
